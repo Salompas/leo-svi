@@ -1,0 +1,21 @@
+#Load packages that will be relevant for the analysis of Google Trends
+from os import path
+
+from DAILYSVI import getDailyData
+import pandas as pd
+
+tickers_file = r'C:\Users\lsali\Dropbox\FinancialEconometrics_Project\TAQ_Data\WRDS_Cloud\SP500_Month\Ticker_SVI\sp500_ticker.txt'
+words = pd.read_csv(tickers_file, header=None).values.ravel()
+
+filename = 'svi_word_by_word'
+folder = path.expanduser('~\Desktop\SVI')
+#Define results as a dictionary format
+#In the loop, associate each ticker with its SVI with starting and end year
+for word in words:
+    svi_word = getDailyData(word, 2004, 2017)
+    svi_word.to_hdf(f'{folder}\{filename}.h5', word, mode='a')
+    
+#After going over all ticker, concatenate variables using only SVI scaled
+#Then save as a .csv file in the same folder
+results = pd.concat([pd.read_hdf(f'{folder}\{filename}.h5', word)[word] for word in words], axis=1)
+results.to_csv(f'{folder}\SVI.csv')
