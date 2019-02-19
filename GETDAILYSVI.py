@@ -3,12 +3,12 @@ from os import path
 from dailydata import getDailyData
 import pandas as pd
 
-tickers_file = path.expanduser('~/Desktop/LEO/sp500_ticker.txt')
+tickers_file = path.expanduser('./sp500_ticker.txt')
 words = list(pd.read_csv(tickers_file, header=None).values.ravel())
 words.reverse()
 
 filename = 'svi_word_by_word'
-folder = path.expanduser('~/Desktop/LEO/')
+folder = path.expanduser('./')
 # Define results as a dictionary format
 # In the loop, associate each ticker with its SVI with starting and end year
 for word, i in zip(words, range(0, 813)):
