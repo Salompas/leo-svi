@@ -37,8 +37,9 @@ def _fetchData(pytrends, build_payload, timeframe: str) -> pd.DataFrame:
             build_payload(timeframe=timeframe)
         except ResponseError as err:
             print(err)
-            print(f'Trying again in {60 + 5*attempts} seconds.')
-            sleep(60 + 5*attempts)
+            wait_time = 900*(1 + attempts)
+            print(f'Trying again in {wait_time} seconds.')
+            sleep(wait_time)
             attempts += 1
         else:
             fetched = True

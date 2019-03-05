@@ -11,9 +11,9 @@ filename = 'svi_word_by_word'
 folder = path.expanduser('./')
 # Define results as a dictionary format
 # In the loop, associate each ticker with its SVI with starting and end year
-for word, i in zip(words[209:], range(0, 813)[209:]):
+for word, i in zip(words[136:200], range(0, 813)[136:200]):
     print(f'Word number: {i}')
-    svi_word = getDailyData(word, 2004, 2017, wait_time=0.1)
+    svi_word = getDailyData(word, 2004, 2017, wait_time=2)
     svi_word.to_hdf(f'{folder}/{filename}.h5', word, mode='a')
 
 # After going over all ticker, concatenate variables using only SVI scaled

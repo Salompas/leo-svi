@@ -1,0 +1,26 @@
+import pandas as pd
+
+tickers = pd.read_csv('sp500_ticker.txt', header=None)
+tickers = set(tickers.values.ravel())
+
+# Arquivo Leo
+with pd.HDFStore('svi_word_by_word_from_leo.h5') as hdf:
+    keys_leo = hdf.keys()
+# Arquivo Servidor
+with pd.HDFStore('svi_word_by_word_up_to_129.h5') as hdf:
+    keys_servidor = hdf.keys()
+# Arquivo Guilherme
+with pd.HDFStore('svi_word_by_word_gui.h5') as hdf:
+    keys_gui = hdf.keys()
+
+# criar um dataframe novo
+# carregar um ticker
+# para cada key
+# verifica se ja existe
+# senao abre o arquivo, adiciona coluna
+# salvar o dataframe num csv
+
+teste = pd.read_hdf('svi_word_by_word_from_leo.h5', '/AA')
+# gerar lista com todos os tickers que foram adicionados
+# calcular diferenca entre todos os tickers e os adicionados
+# salvar a lista num .txt
