@@ -41,6 +41,8 @@ for key in keys_gui:
         data[ticker] = svi[ticker]
 # salvar o dataframe num csv
 data.to_csv('svi_data.csv')
+# salvar o dataframe num csv substituindo NaN por 0
+data.to_csv('svi_data.csv', na_rep='0')
 
 # gerar lista com todos os tickers que foram adicionados
 added_tickers = set(data.columns.values)
